@@ -5,13 +5,10 @@ pkg_version = '0.1.0'
 with open('requirements.txt') as f:
     install_requires = f.read().splitlines()
 
-with open('README.md') as f:
-    long_description = f.read()
-
 setup(name='APImetrics',
       version=pkg_version,
       description="APImetrics Client",
-      long_description=long_description,
+      long_description=open('README.md', 'r').read(),
       classifiers=[
           # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
           'Development Status :: 4 - Beta',
@@ -51,5 +48,5 @@ setup(name='APImetrics',
               'eggsecutable=apimetrics.cli:main',
           ]
       },
-      #download_url="http://client.apimetrics.io/foo"
+      download_url="https://github.com/APImetrics/APImetrics-Python-Client/archive/{pkg_version}.tar.gz".format(pkg_version=pkg_version)
      )

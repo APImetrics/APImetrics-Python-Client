@@ -48,5 +48,5 @@ setup(name='APImetrics',
               'eggsecutable=apimetrics.cli:main',
           ]
       },
-      download_url="https://github.com/APImetrics/APImetrics-Python-Client/archive/{pkg_version}.tar.gz".format(pkg_version=pkg_version)
+      download_url="https://github.com/APImetrics/APImetrics-Python-Client/archive/v{pkg_version}.tar.gz".format(pkg_version=pkg_version)
      )

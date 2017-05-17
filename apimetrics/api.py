@@ -126,7 +126,7 @@ class APImetricsAPI(object):
         self.simulate = simulate
         self.api_base_url = api_base_url if api_base_url else self.API_BASE_URL
         if not self.apimetrics_key:
-            raise APImetricsError("Missing APImetrics API key")
+            raise APImetricsError("Missing APImetrics API key - please genereate a key at https://client.apimetrics.io/settings/api-key and use the -a flag to store it.")
 
     list_auth = _get_list_method('auth')
     list_auth_by_domain = _get_list_method('auth', 'domain')

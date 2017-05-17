@@ -8,7 +8,7 @@ with open('requirements.txt') as f:
 setup(name='APImetrics',
       version=pkg_version,
       description="APImetrics Client",
-      long_description=open('README.md', 'r').read(),
+      long_description=open('README.rst', 'r').read(),
       classifiers=[
           # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
           'Development Status :: 4 - Beta',

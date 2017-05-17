@@ -112,7 +112,7 @@ def main():
     try:
         cli.run()
     except apimetrics.APImetricsError as ex:
-        print("ERROR: {}".format(ex.message), file=sys.stderr)
+        print("ERROR: {}".format(ex), file=sys.stderr)
 
 if __name__ == '__main__':
     main()

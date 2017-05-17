@@ -4,6 +4,7 @@ import logging
 import os
 import re
 import sys
+from six.moves import input
 import apimetrics
 
 logging.basicConfig(
@@ -31,7 +32,7 @@ class DeploymentsRemover(apimetrics.APImetricsCLI):
             if not re.search(self.args.get('name'), api_name):
                 return False
         if not self.args.get('non_interactive'):
-            inp_str = raw_input('Delete deployments for API call "{name}"? y/N: '.format(**call.get('meta')))
+            inp_str = input('Delete deployments for API call "{name}"? y/N: '.format(**call.get('meta')))
             return inp_str.lower() == 'y'
         return True
 
@@ -51,7 +52,7 @@ def main():
     try:
         cli.run()
     except apimetrics.APImetricsError as ex:
-        print("ERROR: {}".format(ex.message), file=sys.stderr)
+        print("ERROR: {}".format(ex), file=sys.stderr)
 
 if __name__ == '__main__':
     main()

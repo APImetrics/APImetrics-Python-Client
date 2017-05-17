@@ -4,6 +4,7 @@ import logging
 import os
 import sys
 import re
+from six.moves import input
 import apimetrics
 
 logging.basicConfig(
@@ -33,7 +34,7 @@ class DeploymentCreator(apimetrics.APImetricsCLI):
             if not re.search(self.args.get('name'), api_name):
                 return False
         if self.args.get('interactive'):
-            inp_str = raw_input('Change deployments for API call "{name}"? y/N: '.format(**call.get('meta')))
+            inp_str = input('Change deployments for API call "{name}"? y/N: '.format(**call.get('meta')))
             return inp_str.lower() == 'y'
         return True
 
@@ -66,7 +67,7 @@ def main():
     try:
         cli.run()
     except apimetrics.APImetricsError as ex:
-        print("ERROR: {}".format(ex.message), file=sys.stderr)
+        print("ERROR: {}".format(ex), file=sys.stderr)
 
 if __name__ == '__main__':
     main()

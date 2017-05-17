@@ -4,7 +4,7 @@ from __future__ import print_function
 import logging
 import json
 import requests
-
+from six.moves import input
 from apimetrics.errors import APImetricsError
 
 #https://urllib3.readthedocs.org/en/latest/security.html#insecureplatformwarning
@@ -202,7 +202,7 @@ class APImetricsAPI(object):
 
                 selected = -1
                 while selected < 0 or selected > len(output):
-                    inp_str = raw_input('Enter number for {} to use: '.format(object_name))
+                    inp_str = input('Enter number for {} to use: '.format(object_name))
                     try:
                         selected = int(inp_str)
                     except (ValueError, TypeError):

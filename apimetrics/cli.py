@@ -7,11 +7,7 @@ import os
 import io
 import json
 import argparse
-try:
-    import configparser
-except ImportError:
-    import ConfigParser as configparser
-
+from six.moves import input, configparser
 from apimetrics.errors import APImetricsError
 from apimetrics.api import APImetricsAPI
 
@@ -139,9 +135,6 @@ class APImetricsScript(APImetricsCLI):
         resp = func(**kwargs)
 
         for i, obj in enumerate(resp['results']):
-
-            print(obj)
-
             if command_type != 'deployment':
                 print(u'{index}: {id} - {name}'.format(index=i+1, id=obj['id'], name=obj.get('meta', {}).get('name')))
             else:
@@ -175,7 +168,7 @@ class APImetricsScript(APImetricsCLI):
     def delete(self, command_type, command_opt, **kwargs):
         resp = self.read(command_type, command_opt, **kwargs)
         func = getattr(self.api, 'delete_{}'.format(command_type))
-        inp_str = raw_input('Enter "YES" to confirm that you want to delete all: ')
+        inp_str = input('Enter "YES" to confirm that you want to delete all: ')
         if inp_str == "YES":
             for i, obj in enumerate(resp['results']):
                 resp2 = func(obj['id'], **kwargs)
@@ -223,4 +216,4 @@ def main():
     try:
         cli.run()
     except APImetricsError as ex:
-        print("ERROR: {}".format(ex.message), file=sys.stderr)
+        print("ERROR: {}".format(ex), file=sys.stderr)

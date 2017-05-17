@@ -2,9 +2,8 @@
 import logging
 import sys
 import os
+from .cli import main
 
 logging.basicConfig(stream=sys.stdout, level=os.environ.get('DEBUG_LEVEL') or logging.INFO)
-
-from .cli import main
 
 main()

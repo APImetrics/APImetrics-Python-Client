@@ -42,7 +42,7 @@ Use command ``apimetrics -a YOUR_API_KEY`` to save the key.
         --simulate, -s        Simulate - don't call the APImetrics API
 
 
-**APImetrics module - ``import apimetrics``**
+**APImetrics module**
 
 You may also write your own scripts - look in the ``apimetrics/scripts`` folder for example code.
 

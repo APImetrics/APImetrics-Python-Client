@@ -36,25 +36,25 @@ class DeploymentCreator(apimetrics.APImetricsCLI):
             if not re.search(self.args.get('name'), api_name):
                 return False
         if self.args.get('interactive'):
-            inp_str = input('Change deployments for API call "{name}"? y/N: '.format(**call.get('meta')))
+            inp_str = input('Change deployments for Workflow "{name}"? y/N: '.format(**call.get('meta')))
             return inp_str.lower() == 'y'
         return True
 
     def run(self, **kwargs):
 
-        list_of_calls = self.api.list_all_calls(**kwargs)
+        list_of_calls = self.api.list_all_workflows(**kwargs)
         locations = list(self.args['location_ids'])
 
         for call in list_of_calls['results']:
             if self.ask_user_about_call(call):
-                deployments = self.api.list_deployments_by_call(call=call['id'], **kwargs)
+                deployments = self.api.list_deployments_by_workflow(call=call['id'], **kwargs)
 
                 for deployment in deployments['results']:
                     print('Deleting old deployment {location_id} for api {name}...'.format(name=call['meta']['name'], **deployment.get('deployment')), end='\t\t')
                     self.api.delete_deployment(deployment['id'], **kwargs)
                     print('OK')
 
-                # Spread out API calls, avoid exactly on the hour
+                # Spread out API calls, avoid exactly on the hour etc
                 frequency = self.args.get('frequency', 10)
                 gap = math.ceil(float(frequency * 60) / (1.0 + len(self.args['location_ids'])))
                 random.shuffle(locations)

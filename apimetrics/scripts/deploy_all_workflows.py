@@ -69,7 +69,7 @@ class DeploymentCreator(apimetrics.APImetricsCLI):
                         }
                     }
                     print('New deployment {location_id} for api {name}, freq {frequency}, delay {run_delay}s...'.format(name=call['meta']['name'], **deployment['deployment']), end='\t\t')
-                    self.api.create_deployment(deployment)
+                    self.api.create_deployment(deployment, **kwargs)
                     print('OK')
 
 def main():

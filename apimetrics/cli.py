@@ -138,7 +138,7 @@ class APImetricsScript(APImetricsCLI):
             if command_type != 'deployment':
                 print(u'{index}: {id} - {name}'.format(index=i+1, id=obj['id'], name=obj.get('meta', {}).get('name')))
             else:
-                print(u'{index}: {id} - {target_id} @{frequency}m +{run_delay}s'.format(index=i+1, id=obj.get('id'), **obj.get('deployment')))
+                print(u'{index}: {id} - {target_id} - {location_id} @{frequency}m +{run_delay}s'.format(index=i+1, id=obj.get('id'), **obj.get('deployment')))
 
     def create(self, command_type, _, **kwargs):
         string_input = u'\n'.join([x for x in sys.stdin])

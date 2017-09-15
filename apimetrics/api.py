@@ -77,6 +77,8 @@ def _create_object_method(obj_name):
         full_url = url.format(url=self.api_base_url, obj_name=obj_name)
         logging.debug('PUT %s', full_url)
         if not self.simulate:
+            if 'action_user_key_str' in kwargs:
+                obj['action_user_key_str'] = kwargs['action_user_key_str']
             resp = requests.put(
                 full_url,
                 headers=self.post_headers,
@@ -92,6 +94,8 @@ def _update_object_method(obj_name):
         url = '{url}/{obj_name}/{obj_id}/'
         full_url = url.format(url=self.api_base_url, obj_name=obj_name, obj_id=obj_id)
         if not self.simulate:
+            if 'action_user_key_str' in kwargs:
+                obj['action_user_key_str'] = kwargs['action_user_key_str']
             logging.debug('POST %s', full_url)
             resp = requests.post(
                 full_url,
